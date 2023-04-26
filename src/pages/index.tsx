@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react'
 
+const API_ENDPOINT = process.env.NEXT_PUBLIC_API_ENDPOINT
+
 type FIIType = {
     fii: {
         code: string
@@ -34,7 +36,7 @@ function FII(props: FIIType) {
 function IndexPage() {
     async function fetchFII(code: string): Promise<FIIType> {
         const response = await fetch(
-            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/fii/${code}/`,
+            `${API_ENDPOINT}/api/fii/${code}/`,
             { mode: "cors" }
         )
         return await response.json()
