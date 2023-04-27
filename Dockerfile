@@ -1,9 +1,7 @@
 FROM node:latest
 ENV TZ="America/Sao_Paulo"
 WORKDIR /usr/src/app
-COPY . .
-RUN \
-    mv .docker.build.env .env; \
-    yarn install
-RUN yarn build
+COPY package.json yarn.lock ./
+RUN yarn install
+COPY .next ./.next
 CMD [ "yarn", "start" ]
